@@ -1,0 +1,12 @@
+#!/bin/bash
+curl http://localhost:8080/usercheck?secret=d2c8804f45252b2acd4119fe26676919
+
+testImage=`cat imageUrlList.json`
+for ti in $testImage
+do
+echo $ti
+curl --request POST --header "Content-Type: application/json" --data $ti http://localhost:8080/classify-image
+done
+curl http://localhost:8080/report
+#curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://s3.amazonaws.com/gumgum-interviews/ml-engineer/cat.jpg"}' http://localhost:8080/classify-image
+#curl --request POST --header "Content-Type: application/json" --data '{"image_url":"https://s3.amazonaws.com/gumgum-interviews/ml-engineer/cat.jpg"}' http://localhost:8080/classify-image
